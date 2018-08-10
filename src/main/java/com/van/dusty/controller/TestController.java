@@ -2,6 +2,8 @@ package com.van.dusty.controller;
 
 import com.van.dusty.model.UserDO;
 import com.van.dusty.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,7 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("/user")
 public class TestController {
-
+    private final static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Resource
     private UserService userService;
 
@@ -44,9 +46,13 @@ public class TestController {
      * 前端测试
      * @return
      */
-    @RequestMapping("/listView")
+    @RequestMapping("/test")
     public String listView() {
-        System.out.println("listView");
+        // 日志打印测试
+        logger.debug("debug");
+        logger.info("info");
+        logger.warn("warn");
+        logger.error("error");
         return "/test";
     }
 
