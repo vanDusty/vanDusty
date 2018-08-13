@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Dusty</title>
 </head>
 <body>
     Hello SpringBoot!
-    <input type="number" placeholder="请输入充值的RMB金额" name="pay_number" id="pay_number" onkeyup="javascript:senddata(this);"/> 元
-    <span id="outdiv"></span>
-    <script type="text/javascript">
-        function senddata(inputobj) {
-            var obj;
-            obj = document.getElementById("outdiv");
-            obj.innerHTML = '您将充值<strong><em><span style="color:#E53333;font-size:16px;">' + inputobj.value * 10 + '</span></em></strong>金币';
-        }
-    </script>
 </body>
 </html>

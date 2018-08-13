@@ -4,15 +4,14 @@
 
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <title>SpringBoot示例 - 登录</title>
     <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/style.min.css}" rel="stylesheet"/><base target="_blank"/>
+    <link th:href="@{/css/style.min.css}" rel="stylesheet"/>
 </head>
-
 <body class="gray-bg">
     <div class="middle-box text-center loginscreen  animated fadeInDown">
         <div>
@@ -20,24 +19,25 @@
                 <h1 class="logo-name" style="margin-left: -12%;">Dusty</h1>
             </div>
             <h3>即将进入 <b>风尘博客</b></h3>
-            <form id="loginForm" class="m-t" method="post" role="form" action="#" onsubmit="return false">
+            <form id="loginForm" class="m-t" method="post"  onsubmit="return login()">
                 <div class="form-group">
-                    <input type="text" name="userName" class="form-control" placeholder="用户名" required=""/>
+                    <input id="userName" type="text" name="userName" class="form-control input-lg" placeholder="用户名" required=""/>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="密码" required=""/>
+                    <input id="password" type="password" name="password" class="form-control input-lg" placeholder="密码" required=""/>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b" onclick="checkForm()">登 录</button>
+                <input type="submit" class="btn btn-primary block full-width m-b input-lg" th:value="登录">
                 <p class="text-muted text-center">
-                    <a href="#"><small>忘记密码了？</small></a> | <a href="#">注册一个新账号</a>
+                    <a href="#"><small>忘记密码了？</small></a> | <a href="../register">注册一个新账号</a>
                 </p>
             </form>
         </div>
     </div>
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+
     <script>
-        function checkForm() {
+        function login() {
             $.ajax({
                 type: "POST",
                 async:false,
@@ -49,7 +49,8 @@
                     if(ret.code == "200") {
                         window.location.replace("http://www.dustyblog.cn") ;
                     } else {
-                        alert(ret.code + ":" + ret.msg);
+                        alert("登录失败 :" + ret.msg );
+                        window.reload();
                     }
                 }
             });

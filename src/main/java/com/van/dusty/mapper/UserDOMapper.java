@@ -20,6 +20,6 @@ public interface UserDOMapper {
     //我自己加的
     List<UserDO> selectAllUser();
 
-    UserDO selectUserByUserName(String userName);
+    UserDO selectUserByUserName(String nickName);
 
 }
