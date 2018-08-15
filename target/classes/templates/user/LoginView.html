@@ -19,7 +19,7 @@
                 <h1 class="logo-name" style="margin-left: -12%;">Dusty</h1>
             </div>
             <h3>即将进入 <b>风尘博客</b></h3>
-            <form id="loginForm" class="m-t" method="post"  onsubmit="return login()">
+            <form id="loginForm" class="m-t" method="post"  action="/toLogin" onsubmit="return login()">
                 <div class="form-group">
                     <input id="userName" type="text" name="userName" class="form-control input-lg" placeholder="用户名" required=""/>
                 </div>
@@ -35,26 +35,36 @@
     </div>
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-
+    <script th:src="@{/js/Jquery-form.js}"></script>
     <script>
-        function login() {
-            $.ajax({
-                type: "POST",
-                async:false,
-                url: "/toLogin",
-                data: $("#loginForm").serialize(),
-                dataType: "json",
-                contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                success: function (ret) {
-                    if(ret.code == "200") {
-                        window.location.replace("http://www.dustyblog.cn") ;
-                    } else {
-                        alert("登录失败 :" + ret.msg );
-                        window.reload();
-                    }
+        $(function(){
+            /** 验证是否登录成功  */
+            $("#loginForm").ajaxForm(function(data){
+                if(data.code=="200"){
+                    alert("登录成功！");
+                    window.location.replace("http://www.dustyblog.cn") ;
+                }else {
+                    alert("登录失败 :" + data.msg );
                 }
             });
-        }
+        });
+            // $.ajax({
+            //     type: "POST",
+            //     async:false,
+            //     url: "/toLogin",
+            //     data: $("#loginForm").serialize(),
+            //     dataType: "json",
+            //     // contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            //     success: function (ret) {
+            //         if(ret.code == "200") {
+            //             window.location.replace("http://www.dustyblog.cn") ;
+            //         } else {
+            //             alert("登录失败 :" + ret.msg );
+            //             // window.reload();
+            //         }
+            //     }
+            // });
+
     </script>
 </body>
 </html>
